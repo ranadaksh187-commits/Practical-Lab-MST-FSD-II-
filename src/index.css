@@ -109,3 +109,47 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+:root {
+  color-scheme: light;
+  font-family: "Trebuchet MS", "Avenir Next", sans-serif;
+  color: #3e473e;
+  background: #f1f4eb;
+  --ink: #3e473e;
+  --muted: #858a7f;
+  --line: #dfe4d9;
+  --sage: #91aa91;
+  --coral: #d88d7d;
+  --error: #c65f56;
+  --display: Georgia, "Times New Roman", serif;
+  --body: "Trebuchet MS", "Avenir Next", sans-serif;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(135deg, #eff4eb 0%, #f8f3e9 52%, #f5eee9 100%);
+  background-size: 28px 28px, 28px 28px, auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+h1 {
+  letter-spacing: 0;
+}
+
+::selection {
+  color: #354538;
+  background: #dce9d8;
+}
