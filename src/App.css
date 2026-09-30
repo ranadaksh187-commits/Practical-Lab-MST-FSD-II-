@@ -337,6 +337,45 @@
   margin-bottom: 10px;
 }
 
+.post-options {
+  margin-bottom: 18px;
+}
+
+.option-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.option-pill {
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid #d9e3d7;
+  border-radius: 999px;
+  color: #58695d;
+  background: #f4f7f3;
+  font: 600 13px var(--body);
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease,
+    transform 160ms ease;
+}
+
+.option-pill:hover {
+  border-color: #b9cbbd;
+  transform: translateY(-1px);
+}
+
+.option-pill.is-selected {
+  border-color: #607b64;
+  color: #fffefa;
+  background: #607b64;
+}
+
+.option-pill:focus-visible {
+  outline: 3px solid rgba(96, 123, 100, 0.25);
+  outline-offset: 2px;
+}
+
 .post-form textarea {
   display: block;
   width: 100%;
@@ -490,6 +529,80 @@
   color: #607b64;
   font-size: 13px;
   text-align: right;
+}
+
+.posts-panel {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid #eeece3;
+}
+
+.posts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.post-count {
+  min-width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #edf3e9;
+  color: #607b64;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.post-item {
+  padding: 14px 16px;
+  border: 1px solid #e6e1d6;
+  border-radius: 8px;
+  background: #fffdf8;
+}
+
+.post-item-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.post-tag {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #edf3e9;
+  color: #576d5d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.post-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d98f81;
+}
+
+.post-item p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .sheet-footer {

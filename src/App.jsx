@@ -4,11 +4,34 @@ import "./App.css";
 function App() {
   const [post, setPost] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [postOption, setPostOption] = useState("");
+  const [posts, setPosts] = useState([
+    {
+      id: 1,
+      message: "A small note is still a thought worth keeping.",
+      option: "public",
+    },
+  ]);
   const isOverLimit = post.length > 100;
+  const hasPostOption = postOption !== "";
+  const canSubmit = post.trim().length > 0 && !isOverLimit && hasPostOption;
 
   const handlePost = () => {
+    if (!canSubmit) {
+      return;
+    }
+
+    const postedTo = postOption.charAt(0).toUpperCase() + postOption.slice(1);
+    const newPost = {
+      id: Date.now(),
+      message: post.trim(),
+      option: postOption,
+    };
+
+    setPosts((currentPosts) => [newPost, ...currentPosts]);
     setPost("");
-    setFeedback("Post submitted!");
+    setPostOption("");
+    setFeedback(`Post submitted to ${postedTo}!`);
   };
 
   return (
@@ -47,6 +70,30 @@ function App() {
               handlePost();
             }}
           >
+            <div className="post-options">
+              <label className="field-label">POST OPTIONS</label>
+              <div className="option-grid" role="group" aria-label="Post options">
+                {[
+                  { value: "public", label: "Public" },
+                  { value: "friends", label: "Friends" },
+                  { value: "private", label: "Only me" },
+                ].map((option) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    className={`option-pill${postOption === option.value ? " is-selected" : ""}`}
+                    onClick={() => {
+                      setPostOption(option.value);
+                      setFeedback("");
+                    }}
+                    aria-pressed={postOption === option.value}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <label className="field-label" htmlFor="post-content">
               YOUR MESSAGE
             </label>
@@ -93,7 +140,7 @@ function App() {
 
             <div className="form-actions">
               <span className="action-note">Sent with a little care</span>
-              <button type="submit" disabled={post.length === 0 || isOverLimit}>
+              <button type="submit" disabled={!canSubmit}>
                 Post note
                 <span className="button-arrow" aria-hidden="true" />
               </button>
@@ -103,6 +150,25 @@ function App() {
               {feedback}
             </p>
           </form>
+
+          <section className="posts-panel" aria-live="polite">
+            <div className="posts-header">
+              <span className="eyebrow">RECENT POSTS</span>
+              <span className="post-count">{posts.length}</span>
+            </div>
+
+            <ul className="post-list">
+              {posts.map(({ id, message, option }) => (
+                <li key={id} className="post-item">
+                  <div className="post-item-topline">
+                    <span className="post-tag">{option}</span>
+                    <span className="post-dot" aria-hidden="true" />
+                  </div>
+                  <p>{message}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
 
           <div className="sheet-footer" aria-hidden="true">
             <span>TAKE YOUR TIME</span>
